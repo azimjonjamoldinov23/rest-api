@@ -17,16 +17,20 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from myapp import views
+from django.http import JsonResponse
+
+
+def home(request):
+    return JsonResponse({
+        "message": "REST API ishlayapti!",
+        "status": "success"
+    })
 
 
 urlpatterns = [
-    # Bosh sahifa
-    path('', views.home, name='home'),
+    path("", home, name="home"),
 
-    # Django admin
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
 
-    # REST API
-    path('api/', include('myapp.urls')),
+    path("api/", include("myapp.urls")),
 ]
