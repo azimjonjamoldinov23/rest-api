@@ -2,6 +2,7 @@ from django.shortcuts import render
 from myapp.models import Students
 from rest_framework.generics import ListCreateAPIView ,ListAPIView , DestroyAPIView, RetrieveUpdateAPIView
 from myapp.serializers import Studentsserializers , addStudentsserializers
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -20,3 +21,11 @@ class StudentsDestroyAPIView(DestroyAPIView):
 class StudentsRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Students.objects.all()
     serializer_class = addStudentsserializers
+
+
+
+def home(request):
+    return JsonResponse({
+        "message": "REST API ishlayapti!",
+        "api": "/api/"
+    })
